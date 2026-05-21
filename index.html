@@ -4,10 +4,61 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mesa RPG - Espelho do Mestre</title>
-  <link rel="stylesheet" href="style.css?v=11" />
+
+  <!--Icons Google-->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <!--Link CSS-->
+  <link rel="stylesheet" href="./css/index.css" />
 </head>
 <body>
+
+  <!--Aqui os mapas são mostrados na tela -->
+  <div class="screen master-screen" id="masterPreview"></div>
+
+  <!--Aqui eu seleciono os mapas que qro mostrar na tela-->
+      <section class="panel" id="mapas-controle">
+        <div class="header-mapas-controle">
+          <img src="./assets/images/icons/Maps.png" alt="Ícone de mapas" class="icon-header"/>
+          <span class="material-symbols-outlined" id="icone-mapas-expandir">expand_circle_down</span>
+        </div>
+
+
+          <!--Tirar isso quebra a visualisação de mapas, deixar como display:"none"-->
+          <div class="status" id="fileInfo" style="display: none;">Nenhum arquivo carregado.</div>
+
+          <div id="libraryList" class="library-grid" style="margin-top: 8px;"></div>
+
+          <div class="input-mapas-controle" id="input-mapas-controle">
+          <input class="file-input" id="fileInput" type="file" multiple accept="image/*,.jpg,.jpeg,.png,.webp,.gif,.bmp,.svg,.pdf,.txt,.md,.json,.csv,text/plain" />
+          <span class="material-symbols-outlined" title="Aceita imagens JPG, PNG, WebP, GIF, BMP, SVG, PDF e TXT/MD. Limite prático: até 60 MB por arquivo.">help</span>
+        </div>
+          <!--
+          <div class="buttons two" style="margin-top: 8px;">
+            <button id="showSelectedSmallBtn" class="success">Mostrar</button>
+            <button id="removeSelectedBtn" class="danger">Excluir</button>
+          </div>
+
+          <div class="buttons two" style="margin-top: 7px;">
+            <button id="clearLibraryBtn" class="danger">Limpar cenas</button>
+            <button class="warning" id="hideBtn">Tela preta</button>
+          </div>
+          -->
+        </section>
+  <!--TUDO TA SENDO RENDERIZADO AQUI 😦😦-->
+  <!--Vou trazer algumas coisas direto para o HTML para facilitar a manutenção-->
+  <!--Da uma olhada no ./js/10-master.js-->
   <div id="app"></div>
-  <script src="app.js?v=11"></script>
+  <!--Barra de navegação do Mestre-->
+  <div class="nav-bar">
+    <nav>
+      <ul>
+        <li><img src="./assets/images/icons/Maps.png"></li>
+        <span><img src="./assets/images/icons/dado.png"></span>
+        <li><img src="./assets/images/icons/campfire.png"></li>
+      </ul>
+    </nav>
+  </div>
+  <script src="./script/app.js"></script>
+  <script src="./script/script.js"></script>
 </body>
 </html>

@@ -1,0 +1,199 @@
+
+:root {
+  color-scheme: dark;
+
+  /* Base */
+  --color-bg: #0b090d;
+  --color-bg-soft: #131018;
+  --color-surface: #1a1420;
+  --color-surface-2: #201720;
+  --color-surface-3: #2a2030;
+
+  /* Texto */
+  --color-text: #f8f4e9;
+  --color-text-soft: #d8cfda;
+  --color-text-muted: #9f8fa5;
+  --color-text-disabled: #6f6174;
+
+  /* Cores principais da identidade */
+  --color-primary: #8f3fa0;
+  --color-primary-hover: #a64db8;
+  --color-primary-soft: #2f1738;
+
+  --color-secondary: #65a65e;
+  --color-secondary-hover: #78bd70;
+  --color-secondary-soft: #182a18;
+
+  /* Acentos */
+  --color-accent: #aab986;
+  --color-accent-soft: #242817;
+
+  --color-cream: #f8f4e9;
+  --color-ink: #060805;
+
+  /* Estados */
+  --color-success: #65a65e;
+  --color-success-soft: #172717;
+
+  --color-warning: #d2b16a;
+  --color-warning-soft: #2f2612;
+
+  --color-danger: #d95c68;
+  --color-danger-soft: #35171c;
+
+  --color-info: #6aa6d8;
+  --color-info-soft: #142638;
+
+  /* Bordas */
+  --color-border: #342739;
+  --color-border-soft: #261d2b;
+  --color-border-strong: #4a3650;
+
+  /* Inputs */
+  --color-input-bg: #151019;
+  --color-input-border: #342739;
+  --color-input-placeholder: #85758b;
+  --color-input-focus: #8f3fa0;
+
+  /* Cards */
+  --color-card-bg: #18131d;
+  --color-card-hover: #211827;
+  --color-card-border: #302336;
+
+  /* Botões */
+  --button-bg: var(--color-primary);
+  --button-bg-hover: var(--color-primary-hover);
+  --button-text: #fff7ff;
+
+  --button-secondary-bg: var(--color-secondary);
+  --button-secondary-bg-hover: var(--color-secondary-hover);
+  --button-secondary-text: #061006;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.55);
+
+  /* Efeitos */
+  --glow-primary: 0 0 18px rgba(143, 63, 160, 0.35);
+  --glow-secondary: 0 0 18px rgba(101, 166, 94, 0.28);
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  /* Transições */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+}
+
+/*MAPAS//////////////////////////////////////////////////////////////*/
+#masterPreview{
+    width: 100% !important;
+    height: 100% !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-bg-soft);
+}
+
+#mapas-controle{
+    width: 300px;
+    height: 420px;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: var(--color-bg);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 2px 5px 12px 0px #00000096;
+}
+
+.header-mapas-controle{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.header-mapas-controle span{
+    cursor: pointer;
+}
+
+.header-mapas-controle img{
+    width: 24px;
+    height: 24px;
+}
+
+.input-mapas-controle{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.input-mapas-controle input{
+    width: 80%;
+}
+
+.input-mapas-controle span{
+    cursor: help;
+}
+
+.library-grid{
+    height: 340px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.library-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.library-thumb{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+}
+
+.library-thumb img{
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.media-wrap{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.media-wrap img{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
