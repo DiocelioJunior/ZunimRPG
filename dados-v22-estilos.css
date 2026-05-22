@@ -1,0 +1,682 @@
+.dice-panel .field {
+  margin-bottom: 7px;
+}
+
+.dice-quick-buttons {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-top: 6px;
+}
+
+.dice-quick-buttons button {
+  padding: 7px 4px;
+  font-size: 11px;
+}
+
+.dice-history-list {
+  max-height: 180px;
+  overflow-y: auto;
+  display: grid;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.dice-history-card {
+  background: #14141d;
+  border: 1px solid #30303d;
+  border-radius: 10px;
+  padding: 7px 8px;
+}
+
+.dice-history-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.dice-history-main strong {
+  min-width: 32px;
+  height: 28px;
+  border-radius: 9px;
+  background: #16a34a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 15px;
+  box-shadow: 0 0 18px rgba(34, 197, 94, 0.25);
+}
+
+.dice-history-main span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.dice-history-meta {
+  color: #aaaabe;
+  font-size: 10px;
+  margin-top: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dice-roll-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 95;
+  pointer-events: none;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: clamp(12px, 2vw, 28px);
+  background: radial-gradient(circle at center, rgba(15, 15, 25, 0.18), rgba(0, 0, 0, 0.02) 55%, rgba(0, 0, 0, 0));
+  animation: diceOverlayIn 0.16s ease-out;
+}
+
+.dice-roll-overlay.fade-out {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+@keyframes diceOverlayIn {
+  from { opacity: 0; transform: scale(0.985); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.dice-roll-title {
+  justify-self: center;
+  max-width: min(92%, 760px);
+  background: rgba(0, 0, 0, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  padding: 8px 14px;
+  color: #f8fafc;
+  font-size: clamp(13px, 1.4vw, 20px);
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.45);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dice-physics-stage {
+  position: relative;
+  overflow: hidden;
+  min-height: 180px;
+  perspective: 780px;
+  transform-style: preserve-3d;
+}
+
+.dice-roll-result {
+  justify-self: center;
+  max-width: min(92%, 820px);
+  background: rgba(0, 0, 0, 0.84);
+  border: 1px solid rgba(250, 204, 21, 0.55);
+  border-radius: 16px;
+  padding: 10px 16px;
+  color: #fff7cc;
+  font-weight: bold;
+  font-size: clamp(14px, 1.5vw, 22px);
+  text-align: center;
+  box-shadow: 0 0 28px rgba(250, 204, 21, 0.28), 0 16px 44px rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dice-roll-result.rolling {
+  color: #dbeafe;
+  border-color: rgba(59, 130, 246, 0.55);
+  box-shadow: 0 0 28px rgba(59, 130, 246, 0.28), 0 16px 44px rgba(0,0,0,0.45);
+}
+
+.dice-roll-result strong {
+  font-size: 1.25em;
+  color: #fef08a;
+}
+
+.dice-roll-result span {
+  color: #e5e7eb;
+  font-size: 0.82em;
+  font-weight: normal;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dice-3d {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 62px;
+  height: 62px;
+  transform-style: preserve-3d;
+  will-change: transform;
+  filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.5));
+}
+
+.dice-3d.dice-dropped {
+  opacity: 0.58;
+  filter: grayscale(0.75) drop-shadow(0 10px 14px rgba(0, 0, 0, 0.38));
+}
+
+.dice-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.dice-face {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, #ffffff, #cbd5e1 55%, #94a3b8);
+  border: 2px solid rgba(255,255,255,0.75);
+  color: #101014;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  box-shadow: inset 0 0 16px rgba(0,0,0,0.18);
+}
+
+.dice-face-front {
+  transform: translateZ(22px);
+}
+
+.dice-face-back {
+  transform: rotateY(180deg) translateZ(22px);
+  opacity: 0.82;
+}
+
+.dice-face-left {
+  transform: rotateY(-90deg) translateZ(22px);
+  opacity: 0.68;
+}
+
+.dice-face-right {
+  transform: rotateY(90deg) translateZ(22px);
+  opacity: 0.68;
+}
+
+.dice-face-top {
+  transform: rotateX(90deg) translateZ(22px);
+  opacity: 0.76;
+}
+
+.dice-face-bottom {
+  transform: rotateX(-90deg) translateZ(22px);
+  opacity: 0.55;
+}
+
+.dice-face strong {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.dice-type {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+  margin-bottom: 3px;
+}
+
+.dice-d4 .dice-face {
+  clip-path: polygon(50% 3%, 96% 92%, 4% 92%);
+  background: linear-gradient(145deg, #fed7aa, #fb923c 55%, #c2410c);
+}
+
+.dice-d6 .dice-face {
+  border-radius: 14px;
+  background: linear-gradient(145deg, #dbeafe, #60a5fa 55%, #1d4ed8);
+}
+
+.dice-d8 .dice-face {
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  background: linear-gradient(145deg, #dcfce7, #4ade80 55%, #15803d);
+}
+
+.dice-d10 .dice-face {
+  clip-path: polygon(50% 0%, 96% 35%, 78% 100%, 22% 100%, 4% 35%);
+  background: linear-gradient(145deg, #fef3c7, #facc15 55%, #a16207);
+}
+
+.dice-d12 .dice-face {
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  background: linear-gradient(145deg, #fae8ff, #d946ef 55%, #86198f);
+}
+
+.dice-d20 .dice-face {
+  clip-path: polygon(50% 0%, 90% 18%, 100% 62%, 72% 100%, 28% 100%, 0% 62%, 10% 18%);
+  background: linear-gradient(145deg, #ccfbf1, #14b8a6 55%, #0f766e);
+}
+
+.dice-d100 .dice-face {
+  border-radius: 50%;
+  background: linear-gradient(145deg, #fee2e2, #ef4444 55%, #991b1b);
+}
+
+.dice-3d.settled {
+  transition: transform 0.6s cubic-bezier(.2,.85,.25,1.2), opacity 0.25s ease, filter 0.25s ease;
+}
+
+.dice-3d.settled .dice-face-front {
+  box-shadow: inset 0 0 16px rgba(255,255,255,0.22), 0 0 22px rgba(255,255,255,0.16);
+}
+
+.player-screen .dice-roll-overlay .dice-roll-title,
+.player-screen .dice-roll-overlay .dice-roll-result {
+  font-size: clamp(18px, 2vw, 34px);
+}
+
+.player-screen .dice-3d {
+  filter: drop-shadow(0 20px 28px rgba(0, 0, 0, 0.62));
+}
+
+
+/* v14: dados 3D reais com Three.js */
+.dice-physics-stage {
+  min-height: 220px;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.08), rgba(255,255,255,0.02) 22%, rgba(0,0,0,0) 58%),
+    linear-gradient(to bottom, rgba(3,7,18,0.18), rgba(15,23,42,0.04));
+  border-radius: 18px;
+}
+
+.dice-three-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.dice-roll-result.done strong {
+  text-shadow: 0 0 18px rgba(250, 204, 21, 0.28);
+}
+
+.player-screen .dice-physics-stage {
+  min-height: 260px;
+}
+
+
+/* v14: Dados 3D premium legado */
+.dice-roll-overlay-premium {
+  background:
+    radial-gradient(circle at center, rgba(8, 47, 73, 0.18), rgba(0, 0, 0, 0.08) 48%, rgba(0, 0, 0, 0.02)),
+    linear-gradient(to bottom, rgba(0,0,0,0.06), rgba(0,0,0,0));
+}
+
+.dice-premium-stage {
+  min-height: 280px;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at center, rgba(37, 99, 235, 0.13), rgba(15, 23, 42, 0.05) 40%, rgba(0, 0, 0, 0) 68%);
+  overflow: hidden;
+}
+
+.dice-three-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  filter: drop-shadow(0 28px 40px rgba(0, 0, 0, 0.65));
+}
+
+.dice-roll-result.done {
+  border-color: rgba(250, 204, 21, 0.85);
+  box-shadow:
+    0 0 36px rgba(250, 204, 21, 0.32),
+    0 18px 55px rgba(0,0,0,0.56);
+}
+
+.dice-roll-result.done strong {
+  color: #fef08a;
+  text-shadow: 0 0 18px rgba(250, 204, 21, 0.42);
+}
+
+.player-screen .dice-premium-stage {
+  min-height: 360px;
+}
+
+.player-screen .dice-roll-overlay-premium {
+  padding: clamp(18px, 2.5vw, 42px);
+}
+
+
+/* v18: DiceBox CDN - assetPath corrigido */
+.dicebox-roll-overlay {
+  background:
+    radial-gradient(circle at center, rgba(15, 23, 42, 0.42), rgba(0, 0, 0, 0.04) 62%, rgba(0, 0, 0, 0)),
+    linear-gradient(to bottom, rgba(0,0,0,0.06), rgba(0,0,0,0.2));
+}
+
+.dicebox-stage {
+  position: relative;
+  min-height: 260px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255,255,255,0.07), rgba(255,255,255,0.015) 35%, rgba(0,0,0,0) 68%),
+    linear-gradient(to bottom, rgba(15,23,42,0.16), rgba(2,6,23,0.05));
+  perspective: none;
+  transform-style: flat;
+}
+
+.dicebox-stage canvas,
+.dicebox-stage #dice-canvas,
+.dicebox-stage [id^="dicebox-canvas-"] {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  display: block !important;
+}
+
+.dicebox-roll-overlay .dice-roll-title {
+  background: rgba(3, 7, 18, 0.82);
+  border-color: rgba(148, 163, 184, 0.28);
+}
+
+.dicebox-roll-overlay .dice-roll-result.done {
+  border-color: rgba(20, 184, 166, 0.64);
+  box-shadow: 0 0 34px rgba(20, 184, 166, 0.22), 0 16px 44px rgba(0,0,0,0.48);
+}
+
+.dicebox-roll-overlay .dice-roll-result.done strong {
+  color: #ccfbf1;
+  text-shadow: 0 0 22px rgba(20, 184, 166, 0.45);
+}
+
+.player-screen .dicebox-stage {
+  min-height: 340px;
+}
+
+
+/* v18: reforço visual/canvas do DiceBox */
+.dicebox-roll-overlay {
+  z-index: 120;
+  background:
+    radial-gradient(circle at center, rgba(15, 23, 42, 0.38), rgba(0, 0, 0, 0.06) 62%, rgba(0, 0, 0, 0)),
+    linear-gradient(to bottom, rgba(0,0,0,0.03), rgba(0,0,0,0.16));
+}
+
+.dicebox-stage {
+  min-height: 320px;
+  height: 100%;
+  isolation: isolate;
+}
+
+.dicebox-stage canvas,
+.dicebox-stage #dice-canvas,
+.dicebox-stage [id^="dicebox-canvas-"] {
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 2 !important;
+  transform: translateZ(0);
+}
+
+.player-screen .dicebox-stage {
+  min-height: 430px;
+}
+
+
+/* v18: fix DiceBox CDN canvas / z-index */
+.dicebox-stage > div,
+.dicebox-stage canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.dicebox-stage canvas {
+  z-index: 10 !important;
+  pointer-events: none !important;
+}
+
+.dicebox-roll-overlay .dice-roll-result {
+  position: relative;
+  z-index: 20;
+}
+
+.dicebox-roll-overlay .dice-roll-title {
+  position: relative;
+  z-index: 20;
+}
+
+
+/* v18: barra rápida de dados abaixo das ferramentas */
+.toolbar-dock {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  min-height: 118px;
+  padding: 4px 6px 6px;
+}
+
+.quick-dice-toolbar {
+  width: min(100%, 930px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  background: rgba(18, 18, 25, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 14px;
+  padding: 7px;
+  box-shadow: 0 12px 34px rgba(0,0,0,0.34);
+}
+
+.quick-dice-status {
+  min-width: 118px;
+  max-width: 280px;
+  color: #d8d8e8;
+  background: #11111a;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.quick-die-btn,
+.quick-roll-btn,
+.quick-clear-btn {
+  height: 34px;
+  min-width: 48px;
+  padding: 0 9px;
+  border-radius: 10px;
+  background: #252535;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #e8e8f4;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.quick-die-btn.active {
+  background: #134e4a;
+  border-color: rgba(45, 212, 191, 0.55);
+  box-shadow: 0 0 18px rgba(20,184,166,0.22);
+}
+
+.quick-roll-btn {
+  min-width: 74px;
+  background: #16a34a;
+  color: white;
+}
+
+.quick-clear-btn {
+  background: #3a2a2a;
+  color: #fecaca;
+}
+
+.quick-dice-mod,
+.quick-dice-mode,
+.quick-dice-color {
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.11);
+  background: #090910;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.quick-dice-mod {
+  width: 58px;
+  text-align: center;
+  padding: 0 6px;
+}
+
+.quick-dice-mode {
+  width: 88px;
+  padding: 0 6px;
+}
+
+.quick-dice-color {
+  width: 42px;
+  padding: 2px;
+}
+
+.dicebox-roll-overlay {
+  cursor: pointer;
+}
+
+.dicebox-roll-overlay::after {
+  content: "Clique para fechar";
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  z-index: 25;
+  font-size: 10px;
+  color: rgba(226, 232, 240, 0.54);
+  background: rgba(2, 6, 23, 0.44);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 999px;
+  padding: 5px 8px;
+}
+
+
+/* v22: rolagens mistas no mesmo palco visual */
+.dicebox-mixed-stage {
+  padding: 12px;
+  min-height: 260px;
+}
+
+.dice-mixed-grid {
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  align-items: stretch;
+}
+
+.dice-mixed-cell {
+  position: relative;
+  min-height: 210px;
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  border-radius: 16px;
+  background: radial-gradient(circle at top, rgba(59, 130, 246, 0.12), rgba(15, 23, 42, 0.08) 45%, rgba(0,0,0,0.12));
+  overflow: hidden;
+}
+
+.dice-mixed-label {
+  position: absolute;
+  z-index: 3;
+  top: 8px;
+  left: 10px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(3, 7, 18, 0.72);
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  color: #dbeafe;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.dice-mixed-substage {
+  position: absolute;
+  inset: 0;
+  min-height: 190px;
+}
+
+.dice-mixed-subresult {
+  position: absolute;
+  z-index: 3;
+  left: 10px;
+  right: 10px;
+  bottom: 8px;
+  padding: 5px 8px;
+  border-radius: 10px;
+  color: #f8fafc;
+  font-size: 12px;
+  text-align: center;
+  background: rgba(3, 7, 18, 0.64);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.player-screen .dice-mixed-grid {
+  min-height: 300px;
+}
+
+.player-screen .dice-mixed-cell {
+  min-height: 270px;
+}
+
+
+/* v22: dados mistos sobrepostos no mesmo palco */
+.dicebox-mixed-overlap-stage {
+  position: relative;
+  padding: 0;
+  min-height: 300px;
+  overflow: hidden;
+}
+
+.dice-mixed-layer {
+  position: absolute;
+  inset: 0;
+  min-height: 100%;
+  pointer-events: none;
+}
+
+.dice-mixed-layer canvas,
+.dice-mixed-layer > canvas,
+.dice-mixed-layer .dice-box-canvas,
+.dice-mixed-layer > div {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: transparent !important;
+}
+
+.dice-mixed-hidden-result {
+  display: none !important;
+}
+
+.player-screen .dicebox-mixed-overlap-stage {
+  min-height: 360px;

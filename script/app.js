@@ -11,7 +11,8 @@
     "09-render-media.js",
     "10-master.js",
     "11-player.js",
-    "12-boot.js"
+    "12-boot.js",
+    "13-dice.js"
   ];
 
   const currentScript = document.currentScript;
