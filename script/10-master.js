@@ -240,51 +240,6 @@ function renderMaster() {
           <small id="previewHelp">A prévia respeita a proporção escolhida.</small>
         </div>
 
-        <div class="preview-area" id="previewArea">
-          <div class="preview-stack" id="previewStack">
-
-            <div class="toolbar-dock" id="toolbarDock">
-              <div class="floating-toolbar" id="floatingToolbar">
-                <button class="tool-btn toolbar-toggle" id="toolbarToggleBtn" title="Recolher/expandir barra">
-                  <span class="tool-icon" id="toolbarToggleIcon">⇤</span>
-                  <span id="toolbarToggleText">Recolher</span>
-                </button>
-
-                <button class="tool-btn" id="toggleGridBtn" title="Ativar/desativar grid">
-                  <span class="tool-icon">▦</span><span>Grid</span>
-                </button>
-
-                <button class="tool-btn" id="togglePointerBtn" title="Pointer">
-                  <span class="tool-icon">➤</span><span>Pointer</span>
-                </button>
-
-                <button class="tool-btn" id="toolLineBtn" title="Linha / Régua">
-                  <span class="tool-icon">─</span><span>Linha</span>
-                </button>
-
-                <button class="tool-btn" id="toolCircleBtn" title="Círculo">
-                  <span class="tool-icon">○</span><span>Círculo</span>
-                </button>
-
-                <button class="tool-btn" id="toolSquareBtn" title="Quadrado">
-                  <span class="tool-icon">□</span><span>Quad.</span>
-                </button>
-
-                <button class="tool-btn" id="toolConeBtn" title="Cone">
-                  <span class="tool-icon">◢</span><span>Cone</span>
-                </button>
-
-                <button class="tool-btn" id="clearMeasurementsToolBtn" title="Limpar todas as medições">
-                  <span class="tool-icon">⌫</span><span>Med.</span>
-                </button>
-
-                <button class="tool-btn" id="clearToolsBtn" title="Desativar ferramentas">
-                  <span class="tool-icon">✕</span><span>Tool</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       <aside class="notesbar">
@@ -502,7 +457,7 @@ function renderMaster() {
     if (sceneItems.length === 0) {
       const empty = document.createElement("div");
       empty.className = "library-empty";
-      empty.textContent = "Nenhuma imagem, mapa ou cena preparada.";
+      //empty.textContent = "Nenhuma imagem, mapa ou cena preparada.";
       libraryList.appendChild(empty);
       return;
     }
@@ -1426,31 +1381,52 @@ function renderMaster() {
     });
   }
 
-  document.getElementById("openPlayerBtn").addEventListener("click", () => {
-    const url = new URL(window.location.href);
-    url.searchParams.set("view", "player");
+  ///ABRIR SEGUNDA TELA
+document.getElementById("openPlayerBtn").addEventListener("click", () => {
+  const url = new URL(window.location.href);
 
-    playerWindow = window.open(url.toString(), "mesa-rpg-player", "popup=yes,width=1280,height=720");
+  // marca que é a tela dos jogadores
+  url.searchParams.set("view", "player");
 
-    if (playerWindow) {
-      playerStatus.textContent = "Tela dos jogadores aberta. Arraste essa janela para a TV.";
+  playerWindow = window.open(
+    url.toString(),
+    "mesa-rpg-player",
+    "popup=yes,width=1280,height=720"
+  );
 
-      setTimeout(() => {
-        sendScreenSettings();
-        sendGridSettings();
+  if (playerWindow) {
 
-        if (publishedItem) {
-          sendToPlayers(createMessage("show", { item: publishedItem, screenRatio, gridSettings }));
-          sendTokenState();
-          sendMeasurementsState();
-        } else {
-          sendToPlayers(createMessage("blackout", { screenRatio }));
-        }
-      }, 500);
-    } else {
-      playerStatus.textContent = "O navegador bloqueou a janela. Permita pop-ups para este arquivo.";
-    }
-  });
+    playerStatus.textContent =
+      "Tela dos jogadores aberta. Arraste essa janela para a TV.";
+
+    setTimeout(() => {
+      sendScreenSettings();
+      sendGridSettings();
+
+      if (publishedItem) {
+        sendToPlayers(
+          createMessage("show", {
+            item: publishedItem,
+            screenRatio,
+            gridSettings
+          })
+        );
+
+        sendTokenState();
+        sendMeasurementsState();
+
+      } else {
+        sendToPlayers(
+          createMessage("blackout", { screenRatio })
+        );
+      }
+    }, 500);
+
+  } else {
+    playerStatus.textContent =
+      "O navegador bloqueou a janela. Permita pop-ups para este arquivo.";
+  }
+});
 
   fileInput.addEventListener("click", () => { fileInput.value = ""; });
   tokenInput.addEventListener("click", () => { tokenInput.value = ""; });

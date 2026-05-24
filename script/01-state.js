@@ -1,6 +1,11 @@
 const params = new URLSearchParams(window.location.search);
 const isPlayer = params.get("view") === "player";
 
+// adiciona classe no body da tela dos jogadores
+if (isPlayer) {
+  document.body.classList.add("player-view");
+}
+
 const CHANNEL_NAME = "mesa-rpg-espelho-ytplayer-v11-hover-notes-upload-fix";
 const NOTES_KEY = CHANNEL_NAME + "-master-notes";
 const app = document.getElementById("app");

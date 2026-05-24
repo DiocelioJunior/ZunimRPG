@@ -89,6 +89,9 @@
   --transition-normal: 0.25s ease;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -97,6 +100,7 @@
 body{
     width: 100%;
     height: 100vh;
+    font-family: "Sora", sans-serif;
 }
 
 /*MAPAS//////////////////////////////////////////////////////////////*/
@@ -112,14 +116,28 @@ body{
 
 #mapas-controle{
     width: 300px;
-    height: 420px;
+    height: 355px;
     position: fixed;
     top: 10px;
     left: 10px;
     background-color: var(--color-bg);
     border-radius: 8px;
     padding: 10px;
+    display: none;
     box-shadow: 2px 5px 12px 0px #00000096;
+}
+
+#mapas-controle button{
+    background-color: transparent;
+    border: none;
+        color: var(--color-text-disabled);
+    cursor: pointer;
+    margin-right: 10px;
+    transition: ease-in-out 0.2s all;
+}
+
+#mapas-controle button:hover{
+    color: var(--color-text);
 }
 
 .header-mapas-controle{
@@ -156,7 +174,7 @@ body{
 }
 
 .library-grid{
-    height: 340px;
+    height: 240px;
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -196,4 +214,19 @@ body{
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+}
+
+/* FIM MAPAS //////////////////////////////////////////////////////////// */
+
+/*SOM AMBIENTE//////////////////////////////////////////////////////////////*/
+#sons-controle{
+    width: 300px;
+    height: 395px;
+    position: fixed;
+    top: 65px;
+    left: 10px;
+    background-color: var(--color-bg);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 2px 5px 12px 0px #00000096;
 }

@@ -12,7 +12,8 @@
     "10-master.js",
     "11-player.js",
     "12-boot.js",
-    "13-dice.js"
+    "13-dice.js",
+    "14-sounds.js"
   ];
 
   const currentScript = document.currentScript;
@@ -53,3 +54,24 @@
     start();
   }
 })();
+
+///OCULTA OS ELEMENTOS DA TELA DOS JOGADORES - SEGUNDA TELA
+
+window.addEventListener("DOMContentLoaded", () => {
+
+  const params = new URLSearchParams(window.location.search);
+  const isPlayer = params.get("view") === "player";
+
+  if (isPlayer) {
+
+    document.body.classList.add("player-view");
+
+    // remove elementos do mestre
+    document.querySelector(".nav-bar")?.remove();
+    document.getElementById("mapas-controle")?.remove();
+    document.getElementById("openPlayerScreen")?.remove();
+    document.getElementById("masterPreview")?.remove();
+
+  }
+
+});

@@ -4,7 +4,7 @@ function renderItem(container, item, options = {}) {
   if (!item || item.action === "blackout") {
     const empty = document.createElement("div");
     empty.className = "empty";
-    empty.innerHTML = `<h2>${options.player ? "" : "Tela oculta"}</h2><p>${options.player ? "" : "Nada está sendo exibido para os jogadores."}</p>`;
+    empty.innerHTML = `<h2>${options.player ? "" : ""}</h2><p>${options.player ? "" : "Nada está sendo exibido para os jogadores."}</p>`;
     container.appendChild(empty);
     return;
   }
