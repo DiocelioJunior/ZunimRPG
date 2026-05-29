@@ -41,7 +41,8 @@
 
     <!-- Criar Icones para os botões no estilo que já fiz-->
     <div class="buttons two" id="mapas-controle-button" style="margin-top: 8px;">
-      <button id="showSelectedSmallBtn" class="success"><span class="material-symbols-outlined">visibility</span></button>
+      <button id="showSelectedSmallBtn" class="success"><span
+          class="material-symbols-outlined">visibility</span></button>
       <button id="removeSelectedBtn" class="danger"><span class="material-symbols-outlined">delete</span></button>
     </div>
 
@@ -53,21 +54,73 @@
 
 
   <!--Controle de sons ambientes ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-  <section class="panel" id="sons-controle">
+  <section class="panel" id="sons-controle" style="display: none;">
+    <div class="header-mapas-controle">
+      <img src="./assets/images/icons/campfire.png" alt="Ícone de sons" class="icon-header" />
+      <span class="material-symbols-outlined" id="icone-sons-expandir">expand_circle_down</span>
+    </div>
 
-  <div class="header-mapas-controle">
-    <img
-      src="./assets/images/icons/campfire.png"
-      alt="Ícone de sons"
-      class="icon-header"
-    />
+    <div id="soundList" class="sound-list"></div>
 
-    <h2>Sons Ambientes</h2>
-  </div>
+  </section>
 
-  <div id="soundList" class="sound-list"></div>
 
-</section>
+  <!--Biblioteca de vídeos do YouTube /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+  <!--A Biblioteca ta com um bug chato, toda vez que eu adicono um vídeo, ele já vai para a tela no lugar do mapa , preciso corrigir isso-->
+  <section class="panel" id="videos-youtube">
+
+    <div class="field">
+      <input id="youtubeLinkInput" type="text" placeholder="Ex:Cole o link do YouTube" />
+    </div>
+
+    <div class="field">
+      <input id="youtubeTitleInput" type="text" placeholder="Ex: Mapa interativo / Música de batalha" style="display: none;" />
+    </div>
+
+    <div class="buttons two">
+      <button id="addYoutubeBtn" class="success">Preparar vídeo</button>
+      <button id="showYoutubeBtn" class="primary">Mostrar agora</button>
+    </div>
+
+    <div class="youtube-control-panel">
+      <div id="youtubeControlBox" class="youtube-control-box">
+        <div class="library-empty">Selecione ou prepare um vídeo para carregar o player.</div>
+      </div>
+
+      <div class="buttons four" id="controle-youtube" style="margin-top: 7px;">
+        <button id="youtubePlayBtn" class="success"><img src="./assets/images/icons/Play.png"></button>
+        <button id="youtubePauseBtn" class="warning"><img src="./assets/images/icons/pause.png"></button>
+      </div>
+
+      <!--Ocultar botões de controle avançado -->
+      <div class="buttons three" style="margin-top: 7px; display: none;">
+        <button id="youtubeStopBtn">Stop</button>
+        <button id="youtubeMuteBtn">Mudo</button>
+        <button id="youtubeUnmuteBtn">Som</button>
+        <button id="youtubeBackBtn">-10s</button>
+        <button id="youtubeForwardBtn">+10s</button>
+      </div>
+
+      <div class="field" style="margin-top: 8px;">
+        <label for="youtubeVolumeRange">Volume sincronizado <span id="youtubeVolumeValue"
+            class="range-value">70%</span></label>
+        <input id="youtubeVolumeRange" type="range" min="0" max="100" step="1" value="70" />
+      </div>
+    </div>
+
+    <div id="videoLibraryList" class="video-library-list" style="margin-top: 8px;">
+      <div class="library-empty">Nenhum vídeo preparado.</div>
+    </div>
+
+    <div class="buttons two" style="margin-top: 8px;">
+      <button id="removeYoutubeBtn" class="warning">Remover vídeo</button>
+      <button id="clearYoutubeBtn" class="danger">Limpar vídeos</button>
+    </div>
+
+  </section>
+
+
+
 
 
   <!--Segunda Tela ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -126,7 +179,8 @@
       <ul>
         <li id="mapas-icone"><img src="./assets/images/icons/Maps.png" alt="Ícone de mapas" title="Mapas"></li>
         <span><img src="./assets/images/icons/dado.png" alt="Ícone de dado"></span>
-        <li id="sons-ambiente-icone"><img src="./assets/images/icons/campfire.png" alt="Ícone de fogueira" title="Sons Ambientes"></li>
+        <li id="sons-ambiente-icone"><img src="./assets/images/icons/campfire.png" alt="Ícone de fogueira"
+            title="Sons Ambientes"></li>
       </ul>
     </nav>
   </div>

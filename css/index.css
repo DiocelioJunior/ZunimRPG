@@ -223,10 +223,157 @@ body{
     width: 300px;
     height: 395px;
     position: fixed;
+    flex-direction: column;
     top: 65px;
     left: 10px;
     background-color: var(--color-bg);
     border-radius: 8px;
     padding: 10px;
     box-shadow: 2px 5px 12px 0px #00000096;
+}
+
+#soundList{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 350px;
+    overflow: auto;
+}
+
+#soundList::-webkit-scrollbar {
+    display: none;
+}
+
+.sound-card{
+    width: 100%;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 0;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Background borrado */
+.sound-card::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    filter: blur(1px);
+    transform: scale(1.15);
+    z-index: -2;
+}
+
+/* Camada escura */
+.sound-card::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: -1;
+}
+
+
+.sound-actions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.sound-actions button{
+    background-color: transparent;
+    border: none;
+    color: var(--color-text-disabled);
+    cursor: pointer;
+    transition: ease-in-out 0.2s all;
+}
+
+.volume-slider{
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--color-success-soft);
+    outline: none;
+    cursor: pointer;
+}
+
+/* Bolinha */
+.volume-slider::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.volume-control{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.volume-control img{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* FIM SOM AMBIENTE //////////////////////////////////////////////////////////// */
+
+/* PLAYER VIDEO ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+#videos-youtube{
+    width: 300px;
+    height: 395px;
+    position: fixed;
+    flex-direction: column;
+    top: 10px;
+    right: 10px;
+    background-color: var(--color-bg);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 2px 5px 12px 0px #00000096;
+}
+
+#youtubeLinkInput{
+    width: calc(100% - 10px);
+    height: 25px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: none;
+    padding: 5px;
+}
+
+#controle-youtube{
+    display: flex;
+    flex-direction: row;
+}
+
+#controle-youtube button{
+    background-color: transparent !important;
+    border: none;
+}
+
+#controle-youtube img{
+    width: 20px;
+    cursor: pointer;
+}
+
+#controle-youtube img:hover{
+    transform: scale(1.15);
 }

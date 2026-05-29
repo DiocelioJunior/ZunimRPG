@@ -6,7 +6,8 @@ const ambientSounds = [
     title: "Chuva",
     meta: "Ambiente • Loop",
     icon: "🌧️",
-    file: "./assets/audio/rain.mp3"
+    file: "./assets/audio/rain.mp3",
+    bck: "https://i.pinimg.com/736x/93/a8/29/93a8297dfc9bfd20c74fab02a278dbc3.jpg"
   },
 
   {
@@ -14,7 +15,8 @@ const ambientSounds = [
     title: "Floresta",
     meta: "Natureza • Loop",
     icon: "🌲",
-    file: "./assets/audio/forest.mp3"
+    file: "./assets/audio/forest.mp3",
+    bck: "https://i.pinimg.com/736x/fb/8a/e1/fb8ae1bded5ccdf10d6849e27e535d58.jpg"
   },
 
   {
@@ -22,7 +24,8 @@ const ambientSounds = [
     title: "Taverna",
     meta: "RPG • Ambiente",
     icon: "🍺",
-    file: "./assets/audio/tavern.mp3"
+    file: "./assets/audio/tavern.mp3",
+    bck: "https://i.pinimg.com/736x/4e/9d/bb/4e9dbb1299fcbb540c67a2dc4cefb519.jpg"
   },
 
     {
@@ -30,7 +33,8 @@ const ambientSounds = [
     title: "Grilos",
     meta: "Natureza • Loop",
     icon: "🦗",
-    file: "./assets/audio/cricket.mp3"
+    file: "./assets/audio/cricket.mp3",
+    bck: "https://i.pinimg.com/736x/89/ee/0e/89ee0e6089a3cdf0358ac51583e64825.jpg"
   },
 
       {
@@ -38,7 +42,8 @@ const ambientSounds = [
     title: "Vozes",
     meta: "Vozes • Loop",
     icon: "👥",
-    file: "./assets/audio/voices.mp3"
+    file: "./assets/audio/voices.mp3",
+    bck: "https://i.pinimg.com/1200x/1e/9d/85/1e9d8567344a33d29382ad3565f5a662.jpg"
   }
 
 ];
@@ -163,50 +168,60 @@ function renderSounds() {
 
     const card = document.createElement("div");
 
-    card.className = "sound-card";
+   card.className = "sound-card";
 
-    card.innerHTML = `
-      <div class="sound-thumb">
-        ${sound.icon}
-      </div>
+/* Define a imagem do background */
+card.style.setProperty('--bg-image', `url(${sound.bck})`);
 
-      <div class="sound-info">
+card.innerHTML = `
+
+    <div class="sound-info">
 
         <div class="sound-title">
-          ${sound.title}
+            ${sound.title}
         </div>
 
-        <div class="sound-meta">
-          ${sound.meta}
-        </div>
+    </div>
 
-        <input
-          type="range"
-          class="volume-slider"
-          min="0"
-          max="1"
-          step="0.01"
-          value="0.5"
-        />
-
-      </div>
-
-      <div class="sound-actions">
-
-        <button class="success play-btn">
-          ▶ Tocar
-        </button>
+    <div class="sound-actions">
 
         <button class="warning pause-btn">
-          ❚❚ Pausar
+            <img src="./assets/images/icons/pause.png"
+                 alt="Pause"
+                 width="16"
+                 height="16">
+        </button>
+
+        <button class="success play-btn">
+            <img src="./assets/images/icons/Play.png"
+                 alt="Play"
+                 width="16"
+                 height="16">
         </button>
 
         <button class="danger stop-btn">
-          ■ Parar
+            <img src="./assets/images/icons/stop.png"
+                 alt="Stop"
+                 width="16"
+                 height="16">
         </button>
 
-      </div>
-    `;
+    </div>
+
+    <div class="volume-control">
+        <img src="./assets/images/icons/volume.png">
+        <input
+        type="range"
+        class="volume-slider"
+        min="0"
+        max="1"
+        step="0.01"
+        value="0.5"
+    />
+    </div>
+
+`;
+
 
     const playBtn = card.querySelector(".play-btn");
     const pauseBtn = card.querySelector(".pause-btn");

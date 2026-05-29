@@ -109,62 +109,6 @@ function renderMaster() {
         </section>
 
         <section class="panel">
-          <h2>3. Biblioteca de vídeos do YouTube</h2>
-          <p>Cole o link ou ID. O vídeo abre em tela cheia na tela virtual/TV, enquanto o player pequeno abaixo serve para controlar com mais precisão.</p>
-
-          <div class="field">
-            <label for="youtubeLinkInput">Link ou ID do vídeo</label>
-            <input id="youtubeLinkInput" type="text" placeholder="Ex: https://www.youtube.com/watch?v=..." />
-          </div>
-
-          <div class="field">
-            <label for="youtubeTitleInput">Nome opcional</label>
-            <input id="youtubeTitleInput" type="text" placeholder="Ex: Mapa interativo / Música de batalha" />
-          </div>
-
-          <div class="buttons two">
-            <button id="addYoutubeBtn" class="success">Preparar vídeo</button>
-            <button id="showYoutubeBtn" class="primary">Mostrar agora</button>
-          </div>
-
-          <div class="youtube-control-panel">
-            <div class="youtube-control-title">Player de controle do mestre</div>
-            <div id="youtubeControlBox" class="youtube-control-box">
-              <div class="library-empty">Selecione ou prepare um vídeo para carregar o player.</div>
-            </div>
-
-            <div class="buttons four" style="margin-top: 7px;">
-              <button id="youtubePlayBtn" class="success">Play</button>
-              <button id="youtubePauseBtn" class="warning">Pause</button>
-              <button id="youtubeBackBtn">-10s</button>
-              <button id="youtubeForwardBtn">+10s</button>
-            </div>
-
-            <div class="buttons three" style="margin-top: 7px;">
-              <button id="youtubeStopBtn">Stop</button>
-              <button id="youtubeMuteBtn">Mudo</button>
-              <button id="youtubeUnmuteBtn">Som</button>
-            </div>
-
-            <div class="field" style="margin-top: 8px;">
-              <label for="youtubeVolumeRange">Volume sincronizado <span id="youtubeVolumeValue" class="range-value">70%</span></label>
-              <input id="youtubeVolumeRange" type="range" min="0" max="100" step="1" value="70" />
-            </div>
-          </div>
-
-          <div id="videoLibraryList" class="video-library-list" style="margin-top: 8px;">
-            <div class="library-empty">Nenhum vídeo preparado.</div>
-          </div>
-
-          <div class="buttons two" style="margin-top: 8px;">
-            <button id="removeYoutubeBtn" class="warning">Remover vídeo</button>
-            <button id="clearYoutubeBtn" class="danger">Limpar vídeos</button>
-          </div>
-
-          <div class="status" id="youtubeStatus">Servidor JavaScript local. Sem Python e sem chave da API de dados do YouTube.</div>
-        </section>
-
-        <section class="panel">
           <h2>5. Biblioteca de tokens</h2>
           <input class="file-input" id="tokenInput" type="file" multiple accept="image/*,.jpg,.jpeg,.png,.webp,.gif,.bmp,.svg" />
           <div class="mini-note">Tokens aceitos: JPG, PNG, WebP, GIF, BMP ou SVG. Limite prático: até 15 MB por token.</div>
